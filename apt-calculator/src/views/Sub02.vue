@@ -11,7 +11,9 @@
           </div>
           <div>
             <label for="inputtag">금액</label>
-            <input type="text" id="inputtag" v-model="input" />
+            <input type="number" id="inputtag" v-model="input" />
+          </div>
+          <div style="padding-left: 35px">
             <span>{{ priceToString(input) }} 원</span>
           </div>
           <button @click="calc" style="display: none"></button>
@@ -24,7 +26,7 @@
             </li>
           </ul>
           <div>
-            <span>합계: {{ priceToString(total) }}</span>
+            <span>합계: {{ priceToString(sum) }}</span>
             <span>원</span>
           </div>
         </div>
@@ -44,6 +46,11 @@ export default {
     };
   },
   computed: {
+    // eslint-disable-next-line vue/return-in-computed-property
+    sum() {
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      return this.total + Number(this.input);
+    },
     sum2() {
       return this.category * this.input;
     },
@@ -65,7 +72,8 @@ export default {
         this.items.push(res);
         this.addStateValue(this.items);
         this.addTotals(res.price);
-        this.total = this.$store.state.total;
+        //this.sum(res.price);
+        //this.total = this.$store.state.total;
         this.category = '';
         this.input = '';
         e.target.form[0].focus();
