@@ -23,6 +23,7 @@
             <li v-for="(item, i) in items" :key="i">
               <span>{{ item.category }}: </span>
               <span>{{ priceToString(item.price) }} 원</span>
+              <span @click="eachlist(item, i)">❌</span>
             </li>
           </ul>
           <div>
@@ -72,8 +73,8 @@ export default {
         this.items.push(res);
         this.addStateValue(this.items);
         this.addTotals(res.price);
-        this.sum(res.price);
-        //this.total = this.$store.state.total;
+        //this.sum(res.price);
+        this.total = this.$store.state.total;
         this.category = '';
         this.input = '';
         e.target.form[0].focus();
@@ -82,13 +83,17 @@ export default {
       }
     },
     addStateValue(el1) {
-      this.$store.dispatch('toggleStateUser', el1);
+      this.$store.dispatch('addList', el1);
     },
     addTotals(el1) {
       this.$store.dispatch('addTotal', el1);
     },
     priceToString(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
+    eachlist(e, i) {
+      console.log(e);
+      console.log(i);
     },
   },
   mounted() {
@@ -116,6 +121,10 @@ ul {
 }
 li {
   list-style: none;
+}
+li span:last-child {
+  position: relative;
+  float: right;
 }
 .list {
   width: 100%;
