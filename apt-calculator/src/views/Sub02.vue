@@ -5,12 +5,12 @@
     <div class="wrap">
       <div class="wrapper">
         <form class="calc" @submit="calc">
-          <div>
-            <label for="categorytag">항목</label>
+          <div style="padding-bottom: 5px">
+            <label for="categorytag" style="padding-right: 5px">항목</label>
             <input type="text" id="categorytag" v-model="category" />
           </div>
           <div>
-            <label for="inputtag">금액</label>
+            <label for="inputtag" style="padding-right: 5px">금액</label>
             <input type="number" id="inputtag" v-model="input" />
           </div>
           <div style="padding-left: 35px">
@@ -72,7 +72,7 @@ export default {
         this.items.push(res);
         this.addStateValue(this.items);
         this.addTotals(res.price);
-        //this.sum(res.price);
+        this.sum(res.price);
         //this.total = this.$store.state.total;
         this.category = '';
         this.input = '';
@@ -123,5 +123,8 @@ li {
 }
 form {
   text-align: left;
+}
+input {
+  padding: 5px;
 }
 </style>
