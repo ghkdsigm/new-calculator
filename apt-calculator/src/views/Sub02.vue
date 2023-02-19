@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <H2>전자&가전 계산</H2>
+    <H2>전자 & 가전 계산</H2>
     <div class="wrap">
       <div class="wrapper">
         <form class="calc" @submit="calc">
